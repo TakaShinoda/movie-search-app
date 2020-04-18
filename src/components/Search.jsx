@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 export const Search = (props) => {
     const [searchValue, setSearchValue] = useState('')
 
-    const handleSearchInputChange = e => {
+    const handleSearchInputChanges = e => {
         setSearchValue(e.target.value)
     }
 
@@ -19,7 +19,7 @@ export const Search = (props) => {
 
     return (
         <form className="search">
-            <input type="text" value={searchValue} onChange={handleSearchInputChange} />
+            <input type="text" value={searchValue} onChange={handleSearchInputChanges} />
             <input type="submit" value="SEARCH" onClick={callSearchFunction} />
         </form>
     )
