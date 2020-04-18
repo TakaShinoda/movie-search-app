@@ -3,39 +3,16 @@ import "../App.css"
 import { Header } from "./Header"
 import { Movie } from "./Movie"
 import { Search } from "./Search"
-
-const initialState = {
-  loading: true,
-  movies: [],
-  errorMessage: null
-}
-
-const reducer = (state, action) => {
-  switch(action.type) {
-    case 'SEARCH_MOVIES_REQUEST':
-      return {
-        ...state,
-        loading: true,
-        errorMessage: null
-      }
-    case 'SEARCH_MOVIES_SUCCESS':
-      return {
-        ...state,
-        loading: false,
-        movies: action.payload
-      }
-    case 'SEARCH_MOVIES_FAILURE':
-      return {
-        ...state,
-        loading: false,
-        errorMessage: action.error
-      }
-    default:
-      return state
-  }
-}
+import { reducer } from '../reducers'
+import { SEARCH_MOVIES_REQUEST, SEARCH_MOVIES_SUCCESS, SEARCH_MOVIES_FAILURE } from '../action'
 
 export const App = () => {
+  const initialState = {
+    loading: true,
+    movies: [],
+    errorMessage: null
+  }
+
   const [state, dispatch] = useReducer(reducer, initialState)
 
     useEffect(() => {
@@ -43,7 +20,7 @@ export const App = () => {
       .then(response => response.json())
       .then(jsonResponse => {
         dispatch({
-          type: 'SEARCH_MOVIES_SUCCESS',
+          type: SEARCH_MOVIES_SUCCESS,
           payload: jsonResponse.Search
         })
       })
@@ -51,7 +28,7 @@ export const App = () => {
 
     const search = searchValue => {
       dispatch({
-        type: 'SEARCH_MOVIES_FAILURE'
+        type: SEARCH_MOVIES_REQUEST
       })
 
     fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=`+ process.env.REACT_APP_MOVIE_API_KEY)
@@ -59,12 +36,12 @@ export const App = () => {
       .then(jsonResponse => {
         if (jsonResponse.Response === "True") {
           dispatch({
-            type: 'SEARCH_MOVIES_SUCCESS',
+            type: SEARCH_MOVIES_SUCCESS,
             payload: jsonResponse.Search
           })
         } else {
           dispatch({
-            type: 'SEARCH_MOVIES_FAILURE',
+            type: SEARCH_MOVIES_FAILURE,
             errorMessage: jsonResponse.Error
           })
         }
