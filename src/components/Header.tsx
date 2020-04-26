@@ -1,6 +1,10 @@
 import React from 'react'
 
-export const Header = (props) => {
+interface Props {
+    text: string
+}
+
+export const Header: React.FC<Props> = props => {
     return (
         <header className="App-header">
             <h2>{props.text}</h2>

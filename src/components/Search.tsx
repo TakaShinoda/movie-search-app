@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 
-export const Search = (props) => {
-    const [searchValue, setSearchValue] = useState('')
+interface Props {
+    search: Function
+}
 
-    const handleSearchInputChanges = e => {
+export const Search: React.FC<Props> = (props) => {
+    const [searchValue, setSearchValue] = useState<string>('')
+
+    const handleSearchInputChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value)
     }
 
@@ -11,7 +15,7 @@ export const Search = (props) => {
         setSearchValue('')
     }
 
-    const callSearchFunction = e => {
+    const callSearchFunction = (e: React.MouseEvent<HTMLInputElement>) => {
         e.preventDefault()
         props.search(searchValue)
         resetInputField()
