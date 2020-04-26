@@ -7,15 +7,15 @@ interface Props {
 export const Search: React.FC<Props> = (props) => {
     const [searchValue, setSearchValue] = useState<string>('')
 
-    const handleSearchInputChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchInputChanges = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchValue(e.target.value)
     }
 
-    const resetInputField = () => {
+    const resetInputField = (): void => {
         setSearchValue('')
     }
 
-    const callSearchFunction = (e: React.MouseEvent<HTMLInputElement>) => {
+    const callSearchFunction = (e: React.MouseEvent<HTMLInputElement>): void => {
         e.preventDefault()
         props.search(searchValue)
         resetInputField()
