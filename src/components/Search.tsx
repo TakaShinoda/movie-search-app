@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-interface Props {
+interface SearchProps {
     search: Function
 }
 
-export const Search: React.FC<Props> = (props) => {
+export const Search: React.FC<SearchProps> = (props) => {
     const [searchValue, setSearchValue] = useState<string>('')
 
     const handleSearchInputChanges = (e: React.ChangeEvent<HTMLInputElement>): void => {
