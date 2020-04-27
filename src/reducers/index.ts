@@ -1,4 +1,4 @@
-// import { SEARCH_MOVIES_REQUEST, SEARCH_MOVIES_SUCCESS, SEARCH_MOVIES_FAILURE } from '../action'
+import { ActionType } from '../action'
 
 interface MovieState {
   loading: boolean
@@ -12,12 +12,6 @@ interface MovieAction {
   payload: string
   error: string
   
-}
-
-enum ActionType {
-  SEARCH_MOVIES_REQUEST = 'SEARCH_MOVIES_REQUEST',
-  SEARCH_MOVIES_SUCCESS = 'SEARCH_MOVIES_SUCCESS',
-  SEARCH_MOVIES_FAILURE = 'SEARCH_MOVIES_FAILURE'
 }
 
 export const reducer = (state: MovieState, action: MovieAction): MovieState => {
