@@ -16,7 +16,7 @@ export const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
     useEffect(() => {
-    fetch(process.env.REACT_APP_MOVIE_API_URL)
+      fetch(process.env.REACT_APP_MOVIE_API_URL)
       .then(response => response.json())
       .then(jsonResponse => {
         dispatch({
@@ -30,8 +30,8 @@ export const App = () => {
       dispatch({
         type: SEARCH_MOVIES_REQUEST
       })
-
-    fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=`+ process.env.REACT_APP_MOVIE_API_KEY)
+      
+      fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=`+ process.env.REACT_APP_MOVIE_API_KEY)
       .then(response => response.json())
       .then(jsonResponse => {
         if (jsonResponse.Response === "True") {
