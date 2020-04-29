@@ -53,7 +53,7 @@ export const App = () => {
      <div className="App">
       <Header text="MOVIE" />
       <Search search={search} />
-      <p className="App-intro">Sharing a few of our favourite movies</p>
+      <p className="App-intro">Sharing a few of our favorite movies</p>
       <div className="movies">
         {loading && !errorMessage ? (
          <span>loading...</span>
